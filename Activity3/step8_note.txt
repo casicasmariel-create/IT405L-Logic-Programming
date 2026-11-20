@@ -1,0 +1,9 @@
+Activity 3 — Step 8: Recursive Ancestor Query with a Cyclic Fact
+
+When I added the fact parent(mara, mara) and ran the ancestor query again, the program showed this error: "RuntimeError: depth bound of 60 rule steps reached." The original eight facts were not changed.
+
+This happened because Mara was listed as her own parent. The ancestor rule kept checking the same relationship again and again, causing a loop.
+
+The depth limit stopped the program from running forever. However, it did not fix the loop.
+
+To fix this problem, the program can keep track of the relationships it has already checked. If the same relationship appears again in the same search path, the program can skip it. This can help prevent endless loops.

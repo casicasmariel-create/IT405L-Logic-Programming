@@ -1,0 +1,136 @@
+﻿FACTS:
+  parent(luis, sela).
+  parent(luis, uma).
+  parent(luis, olen).
+  parent(luis, pia).
+  parent(pia, mara).
+  parent(olen, hugo).
+  parent(mara, dina).
+  parent(uma, carl).
+
+Total facts: 8
+
+STEP 2 -- Test Pattern Matching
+
+Test 1 -- Variable Binding
+Result: {'X': 'luis'}
+
+Test 2 -- Exact Fact Match
+Result: {}
+
+Test 3 -- Non-Matching Fact
+Result: None
+
+Test 4 -- Repeated Variable Consistency
+Result: None
+
+STEP 3 -- Test Matches Against All Facts
+
+PART A -- Find every parent of ben
+Pattern: ('parent', 'X', 'ben')
+Matches: []
+No match: ben is not in the family facts.
+
+PART B -- Find every parent of mara
+Pattern: ('parent', 'X', 'mara')
+Matches: [{'X': 'pia'}]
+
+PART C -- Match a fact with itself
+Result: {}
+Successful match: {} is not a failure.
+
+STEP 4 -- Represent Rules
+
+RULE 1
+Head: ('grandparent', 'X', 'Z')
+Conditions:
+  ('parent', 'X', 'Y')
+  ('parent', 'Y', 'Z')
+Total conditions: 2
+
+RULE 2
+Head: ('ancestor', 'X', 'Z')
+Conditions:
+  ('parent', 'X', 'Z')
+Total conditions: 1
+
+RULE 3
+Head: ('ancestor', 'X', 'Z')
+Conditions:
+  ('parent', 'X', 'Y')
+  ('ancestor', 'Y', 'Z')
+Total conditions: 2
+
+Total rules: 3
+
+STEP 5 -- Test Backward Chaining
+
+Test 1 -- Fact Query: parent(X, mara)
+Bindings: [{'X': 'pia'}]
+
+Test 2 -- Exact Fact Query: parent(luis, sela)
+Bindings: [{}]
+
+Test 3 -- Rule Query: grandparent(luis, Z)
+Bindings: [{'Z': 'carl'}, {'Z': 'hugo'}, {'Z': 'mara'}]
+
+STEP 6 -- Find All Grandparents
+
+STEP 6 -- grandparents (4):
+  grandparent(luis, carl)
+  grandparent(luis, hugo)
+  grandparent(luis, mara)
+  grandparent(pia, dina)
+
+Total grandparent pairs: 4
+
+Manual Fact Verification:
+  luis -> uma -> carl [VERIFIED]
+  luis -> olen -> hugo [VERIFIED]
+  luis -> pia -> mara [VERIFIED]
+  pia -> mara -> dina [VERIFIED]
+
+Sorted grandparent pairs: (('luis', 'carl'), ('luis', 'hugo'), ('luis', 'mara'), ('pia', 'dina'))
+
+STEP 7 -- Recursive Ancestor Rules
+
+Ancestor Rule 1:
+  ancestor(X, Z) IF parent(X, Z)
+
+Ancestor Rule 2:
+  ancestor(X, Z) IF parent(X, Y)
+                    AND ancestor(Y, Z)
+
+Query: ancestor(X, Z)
+
+STEP 7 -- ancestors (13):
+  ancestor(luis, carl)
+  ancestor(luis, dina)
+  ancestor(luis, hugo)
+  ancestor(luis, mara)
+  ancestor(luis, olen)
+  ancestor(luis, pia)
+  ancestor(luis, sela)
+  ancestor(luis, uma)
+  ancestor(mara, dina)
+  ancestor(olen, hugo)
+  ancestor(pia, dina)
+  ancestor(pia, mara)
+  ancestor(uma, carl)
+
+Total ancestor pairs: 13
+
+Sorted ancestor pairs: (('luis', 'carl'), ('luis', 'dina'), ('luis', 'hugo'), ('luis', 'mara'), ('luis', 'olen'), ('luis', 'pia'), ('luis', 'sela'), ('luis', 'uma'), ('mara', 'dina'), ('olen', 'hugo'), ('pia', 'dina'), ('pia', 'mara'), ('uma', 'carl'))
+
+STEP 8 -- Add STEP8 and Query Ancestors Again
+
+Original number of facts: 8
+Added fact: ('parent', 'mara', 'mara')
+Facts used for this test: 9
+
+Running ancestor(X, Z) with the added fact...
+
+RuntimeError: depth bound of 60 rule steps reached
+The ancestor search cannot finish because the cyclic fact allows repeated recursion.
+
+Original FACTS count remains: 8
