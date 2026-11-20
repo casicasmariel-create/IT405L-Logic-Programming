@@ -1,0 +1,11 @@
+Activity 1 — Step 7 Explanation
+
+Step 7 failed because Python tried to calculate `1/0` 
+while creating the nested tuple, which caused a 
+`ZeroDivisionError`. The error occurred before the
+`evaluate()` function was called. My evaluator uses
+eager evaluation, meaning it evaluates both operands
+before applying the logical operator. However, 
+Python's built-in `or` uses short-circuit evaluation,
+so when the left operand is `True`, it does not 
+evaluate the right operand and avoids the error.

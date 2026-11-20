@@ -1,0 +1,37 @@
+STEP 1 -- Python version on this computer: 3.13.13
+
+STEP 4 -- Testing all logical operators
+my_not(True) = False
+my_not(False) = True
+my_and(True, True) = True
+my_and(True, False) = False
+my_and(False, True) = False
+my_and(False, False) = False
+my_or(True, True) = True
+my_or(True, False) = True
+my_or(False, True) = True
+my_or(False, False) = False
+my_implies(True, True) = True
+my_implies(True, False) = False
+my_implies(False, True) = True
+my_implies(False, False) = True
+
+STEP 6 -- Test six logical expressions
+evaluate(('and', True, ('not', False))) = True (by hand: True) OK
+evaluate(('or', False, False)) = False (by hand: False) OK
+evaluate(('implies', True, False)) = False (by hand: False) OK
+evaluate(('implies', False, False)) = True (by hand: True) OK
+evaluate(('not', ('and', True, ('or', False, True)))) = False (by hand: False) OK
+evaluate(('and', ('implies', ('or', True, False), ('implies', False, True)), ('implies', ('implies', True, True), ('and', True, False)))) = False (by hand: False) OK
+
+EXPR written out: (((True or False) implies (False implies True)) and ((True implies True) implies (True and False)))
+
+STEP 7 -- Error Demonstration
+Expression: ("or", True, ("and", 1/0, False))
+
+The error exactly as Python reports it:
+Traceback (most recent call last):
+  File "C:\Users\ACER\Documents\IT405L\Activity1\logic_ops.py", line 150, in test_error
+    expr = ("or", True, ("and", 1/0, False))
+                                ~^~
+ZeroDivisionError: division by zero
