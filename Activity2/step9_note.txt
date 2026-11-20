@@ -1,0 +1,9 @@
+Activity 2 — Step 9: Incomplete Variable List
+
+When I tested the equivalent() function using two expressions with different variable sets, Python raised `KeyError: 'r'`. This happened because the first expression used p and q, while the second expression also used r, but the supplied variable list contained only p and q.
+
+The checker could not produce a valid equivalence result because the assignment did not include a value for r. This error is useful because it prevents the program from silently returning an unreliable answer.
+
+To make the checker trustworthy, I added variables_in() to collect all variable names from both expressions and equivalent_complete() to check every assignment using the complete variable list.
+
+After applying the fix, the result was False. The counterexample was p=False, q=False, r=True, where the first expression evaluated to False and the second expression evaluated to True. This proves that the two expressions are not logically equivalent.

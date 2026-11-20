@@ -1,0 +1,110 @@
+﻿STEP 2 -- Verify Assignment Counts
+n=1: actual=2, expected=2 OK
+n=2: actual=4, expected=4 OK
+n=3: actual=8, expected=8 OK
+n=4: actual=16, expected=16 OK
+
+STEP 3 -- Generate a Truth Table
+Expression: p AND q
+p      q      | value
+False  False  | False
+False  True   | False
+True   False  | False
+True   True   | True
+
+STEP 4 -- p or not p
+p      | value
+False  | True
+True   | True
+-> tautology (true on every row)
+
+STEP 4 -- p and not p
+p      | value
+False  | False
+True   | False
+-> contradiction (false on every row)
+
+STEP 5 -- Test Logical Equivalence
+Test 1: p OR p versus p
+Equivalent: True
+Test 2: p versus NOT p
+Equivalent: False
+
+STEP 6 -- Verify De Morgan's Law
+
+Expression 1: not (p and q)
+p      q      | value
+False  False  | True
+False  True   | True
+True   False  | True
+True   True   | False
+
+Expression 2: (not p) or (not q)
+p      q      | value
+False  False  | True
+False  True   | True
+True   False  | True
+True   True   | False
+
+De Morgan's Law -- Equivalent: True
+
+STEP 7 -- Verify Implication Equivalence
+
+Expression 1: p implies q
+p      q      | value
+False  False  | True
+False  True   | True
+True   False  | False
+True   True   | True
+
+Expression 2: not p or q
+p      q      | value
+False  False  | True
+False  True   | True
+True   False  | False
+True   True   | True
+
+Implication Equivalence: True
+
+STEP 8 -- Test Personalized E1 and E2
+
+E1: (r or (p and q))
+p      q      r      | value
+False  False  False  | False
+False  False  True   | True
+False  True   False  | False
+False  True   True   | True
+True   False  False  | False
+True   False  True   | True
+True   True   False  | True
+True   True   True   | True
+
+E2: ((r or p) and (r or q))
+p      q      r      | value
+False  False  False  | False
+False  False  True   | True
+False  True   False  | False
+False  True   True   | True
+True   False  False  | False
+True   False  True   | True
+True   True   False  | True
+True   True   True   | True
+
+Personalized Equivalence: True
+Witness: none
+
+STEP 9 -- Test Incomplete Variable List
+Expression 1: p or q
+Expression 2: (p or q) or r
+Variables supplied: ['p', 'q']
+
+PART A -- Test with incomplete variables
+KeyError: 'r'
+The supplied variable list is incomplete.
+
+PART B -- Test with complete variables
+Complete variable list: ['p', 'q', 'r']
+Equivalent after fix: False
+Counterexample: p=False,q=False,r=True
+Expression 1 value: False
+Expression 2 value: True
