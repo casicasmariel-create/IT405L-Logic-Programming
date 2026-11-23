@@ -1,0 +1,17 @@
+GROUP B02 - HERMES AGENT OBSERVATION NOTE
+
+Task: Implement is_sorted(xs)
+
+During the session, Hermes Agent performed the following additional actions:
+
+1. Created test_is_sorted.py to check the function's behavior, even though the brief did not require a separate test file.
+
+2. Attempted to run automated tests using pytest.
+
+3. Requested permission to execute a Python import command. The permission was denied.
+
+4. Reported that runtime verification was incomplete because pytest was unavailable and the additional Python execution was denied.
+
+The agent created is_sorted.py and test_is_sorted.py, but successful execution of the tests was not confirmed.
+
+This note documents the observed agent actions. The original agent-generated files and transcript were left unchanged.

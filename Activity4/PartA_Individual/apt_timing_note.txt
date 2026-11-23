@@ -1,0 +1,12 @@
+Activity 4 – Part A: Ubuntu Package Update and Upgrade Timing
+
+Command 1: sudo apt update
+Duration: 1 minute and 9 seconds
+Result: Successfully updated the Ubuntu package lists. A total of 32.8 MB was downloaded, and 145 packages were available for upgrading.
+
+Command 2: sudo apt upgrade
+Duration: Exact time was not recorded.
+Result: The upgrade process finished, and the Ubuntu terminal returned to its normal prompt without a reported error in the final output.
+
+Observation:
+Both commands were completed during the Ubuntu environment setup. The update checked for available package updates, while the upgrade installed the available updates.
